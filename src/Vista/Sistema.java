@@ -6,6 +6,8 @@ package Vista;
 
 import Modelo.Cliente;
 import Modelo.ClienteDao;
+import Modelo.Productos;
+import Modelo.ProductosDao;
 import Modelo.Proveedor;
 import Modelo.ProveedorDao;
 import java.util.List;
@@ -22,12 +24,16 @@ public class Sistema extends javax.swing.JFrame {
     ClienteDao client = new ClienteDao();
     Proveedor pr = new Proveedor();
     ProveedorDao PrDao = new ProveedorDao();
+    Productos pro = new Productos();
+    ProductosDao proDao = new ProductosDao();
     DefaultTableModel modelo = new DefaultTableModel();
 
     public Sistema() {
         initComponents();
         this.setLocationRelativeTo(null);
         txtIdCliente.setVisible(false);
+        proDao.ConsultarProveedor(cbxProveedorPro);
+
     }
 
     public void ListarCliente() {
@@ -196,6 +202,11 @@ public class Sistema extends javax.swing.JFrame {
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/productos 2.png"))); // NOI18N
         jButton4.setText("Productos");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/compras.png"))); // NOI18N
         jButton5.setText("Ventas");
@@ -751,7 +762,6 @@ public class Sistema extends javax.swing.JFrame {
         jLabel25.setText("Proveedor:");
 
         cbxProveedorPro.setEditable(true);
-        cbxProveedorPro.setMaximumRowCount(8);
 
         TableProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -887,7 +897,7 @@ public class Sistema extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab4", jPanel5);
@@ -1094,6 +1104,7 @@ public class Sistema extends javax.swing.JFrame {
             cl.setDireccion(txtDireccionCliente.getText());
             cl.setRazon(txtRazonCliente.getText());
             client.RegistrarCliente(cl);
+                JOptionPane.showMessageDialog(null, "Cliente Registrado");
             LimpiarTable();
             LimpiarCliente();
             ListarCliente();
@@ -1122,6 +1133,7 @@ public class Sistema extends javax.swing.JFrame {
            pr.setDireccion(txtDireccionProveedor.getText());
            pr.setRazon(txtRazonProveedor.getText());
            PrDao.RegistrarProveedor(pr);
+               JOptionPane.showMessageDialog(null, "Proveedor Registrado");
         } else {
              JOptionPane.showMessageDialog(null, "Los campos estan vacios, rellenalos porfavor..");
                       
@@ -1134,7 +1146,26 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarProveedorActionPerformed
 
     private void btnGuardarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProActionPerformed
-        // TODO add your handling code here:
+    if (!"".equals(txtCodigoPro.getText()) && 
+    !"".equals(txtDesPro.getText()) && 
+    !"".equals(txtCantPro.getText()) && 
+    !"".equals(txtPrecioPro.getText()) && 
+    !"".equals(cbxProveedorPro.getSelectedItem().toString())) {
+    // Crear un nuevo objeto Productos y establecer sus atributos
+    pro.setCodigo(txtCodigoPro.getText());
+    pro.setNombre(txtDesPro.getText());
+    pro.setProveedor(cbxProveedorPro.getSelectedItem().toString());
+    pro.setStock(Integer.parseInt(txtCantPro.getText()));
+    pro.setPrecio(Double.parseDouble(txtPrecioPro.getText()));
+    // Llamar al método RegistrarProductos del objeto proDao
+    proDao.RegistrarProductos(pro);
+    JOptionPane.showMessageDialog(null, "Productos Registrados");
+
+} else {
+    // Mostrar un mensaje de advertencia si algún campo está vacío
+    JOptionPane.showMessageDialog(null, "Los campos están vacíos");
+}
+
     }//GEN-LAST:event_btnGuardarProActionPerformed
 
     private void btnEliminarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProActionPerformed
@@ -1213,6 +1244,13 @@ public class Sistema extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnEditarClienteActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       
+            LimpiarTable();
+            jTabbedPane1.setSelectedIndex(3);
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
