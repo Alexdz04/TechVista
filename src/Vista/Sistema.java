@@ -33,8 +33,13 @@ public class Sistema extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         txtIdCliente.setVisible(false);
+<<<<<<< HEAD
+        proDao.ConsultarProveedor(cbxProveedorPro);
+
+=======
         AutoCompleteDecorator.decorate(cbxProveedorPro);
         proDao.ConsularProveedor(cbxProveedorPro);
+>>>>>>> origin/masterproyectofinal
     }
 
     public void ListarCliente() {
@@ -235,9 +240,26 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/productos 2.png"))); // NOI18N
+        jButton4.setText("Productos");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/compras.png"))); // NOI18N
+        jButton5.setText("Ventas");
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/config.png"))); // NOI18N
+        jButton6.setText("Configuracion");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+=======
         btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/productos 2.png"))); // NOI18N
         btnProductos.setText("Productos");
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
+>>>>>>> origin/masterproyectofinal
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProductosActionPerformed(evt);
             }
@@ -808,7 +830,6 @@ public class Sistema extends javax.swing.JFrame {
         jLabel25.setText("Proveedor:");
 
         cbxProveedorPro.setEditable(true);
-        cbxProveedorPro.setMaximumRowCount(8);
 
         TableProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -950,7 +971,7 @@ public class Sistema extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab4", jPanel5);
@@ -1157,7 +1178,11 @@ public class Sistema extends javax.swing.JFrame {
             cl.setDireccion(txtDireccionCliente.getText());
             cl.setRazon(txtRazonCliente.getText());
             client.RegistrarCliente(cl);
+<<<<<<< HEAD
+                JOptionPane.showMessageDialog(null, "Cliente Registrado");
+=======
             JOptionPane.showMessageDialog(null, "Cliente registrado correctamente!!");
+>>>>>>> origin/masterproyectofinal
             LimpiarTable();
             LimpiarCliente();
             ListarCliente();
@@ -1179,6 +1204,16 @@ public class Sistema extends javax.swing.JFrame {
 
     private void btnguardarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarProveedorActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
+       if (!"".equals(txtRucProveedor.getText()) || !"".equals(txtNombreproveedor.getText()) || !"".equals(txtTelefonoProveedor.getText()) || !"".equals(txtDireccionProveedor.getText()) || !"".equals(txtRazonProveedor.getText())) {
+           pr.setRuc(Integer.parseInt(txtRucProveedor.getText()));
+           pr.setNombre(txtNombreproveedor.getText());
+           pr.setTelefono(txtTelefonoProveedor.getText());
+           pr.setDireccion(txtDireccionProveedor.getText());
+           pr.setRazon(txtRazonProveedor.getText());
+           PrDao.RegistrarProveedor(pr);
+               JOptionPane.showMessageDialog(null, "Proveedor Registrado");
+=======
         if (!"".equals(txtRucProveedor.getText()) || !"".equals(txtNombreproveedor.getText()) || !"".equals(txtTelefonoProveedor.getText()) || !"".equals(txtDireccionProveedor.getText()) || !"".equals(txtRazonProveedor.getText())) {
             pr.setRuc(Integer.parseInt(txtRucProveedor.getText()));
             pr.setNombre(txtNombreproveedor.getText());
@@ -1190,6 +1225,7 @@ public class Sistema extends javax.swing.JFrame {
             LimpiarTable();
             ListarProveedor();
             LimpiarProveedor();
+>>>>>>> origin/masterproyectofinal
         } else {
             JOptionPane.showMessageDialog(null, "Los campos estan vacios, rellenalos porfavor..");
 
@@ -1215,6 +1251,28 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarProveedorActionPerformed
 
     private void btnGuardarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProActionPerformed
+<<<<<<< HEAD
+    if (!"".equals(txtCodigoPro.getText()) && 
+    !"".equals(txtDesPro.getText()) && 
+    !"".equals(txtCantPro.getText()) && 
+    !"".equals(txtPrecioPro.getText()) && 
+    !"".equals(cbxProveedorPro.getSelectedItem().toString())) {
+    // Crear un nuevo objeto Productos y establecer sus atributos
+    pro.setCodigo(txtCodigoPro.getText());
+    pro.setNombre(txtDesPro.getText());
+    pro.setProveedor(cbxProveedorPro.getSelectedItem().toString());
+    pro.setStock(Integer.parseInt(txtCantPro.getText()));
+    pro.setPrecio(Double.parseDouble(txtPrecioPro.getText()));
+    // Llamar al método RegistrarProductos del objeto proDao
+    proDao.RegistrarProductos(pro);
+    JOptionPane.showMessageDialog(null, "Productos Registrados");
+
+} else {
+    // Mostrar un mensaje de advertencia si algún campo está vacío
+    JOptionPane.showMessageDialog(null, "Los campos están vacíos");
+}
+
+=======
         // TODO add your handling code here:
         if (!"".equals(txtCodigoPro.getText()) && !"".equals(txtDesPro.getText()) && !"".equals(cbxProveedorPro.getSelectedItem()) && !"".equals(txtCantPro.getText()) && !"".equals(txtPrecioPro.getText())) {
             pro.setCodigo(txtCodigoPro.getText());
@@ -1227,6 +1285,7 @@ public class Sistema extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Los campos estan vacios... Revisa.");
         }
+>>>>>>> origin/masterproyectofinal
     }//GEN-LAST:event_btnGuardarProActionPerformed
 
     private void btnEliminarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProActionPerformed
@@ -1324,6 +1383,14 @@ public class Sistema extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnEditarClienteActionPerformed
 
+<<<<<<< HEAD
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       
+            LimpiarTable();
+            jTabbedPane1.setSelectedIndex(3);
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+=======
     private void TableProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableProveedorMouseClicked
         // TODO add your handling code here:
         int fila = TableProveedor.rowAtPoint(evt.getPoint());
@@ -1374,6 +1441,7 @@ public class Sistema extends javax.swing.JFrame {
         txtCantPro.setText(TableProducto.getValueAt(fila, 4).toString());
         txtPrecioPro.setText(TableProducto.getValueAt(fila, 5).toString());
     }//GEN-LAST:event_TableProductoMouseClicked
+>>>>>>> origin/masterproyectofinal
 
     /**
      * @param args the command line arguments
